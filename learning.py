@@ -124,7 +124,7 @@ def make_handler(app: App):
                     doc, page = q.get("doc", ""), int(q.get("page", "0"))
                     zoom = min(max(float(q.get("zoom", "1.6")), 0.5), 3.0)
                     if doc not in app.documents:
-                        return self._json({"error": "unknown document"}, 404)
+                        return self._json({"error": "unknown"}, 404)
                     return self._send(200, app.page_png(doc, page, zoom), "image/png", cache=True)
                 if url.path == "/api/pdf":
                     doc = q.get("doc", "")
@@ -177,3 +177,6 @@ def serve(cfg: Config, host: str = "127.0.0.1", port: int = 8000) -> None:
         httpd.serve_forever()
     except KeyboardInterrupt:
         pass
+
+
+#checking
